@@ -1,6 +1,6 @@
 use std::{fs::{create_dir, File}, io::Write};
 
-use image::ImageReader;
+use image::{load_from_memory, DynamicImage, ImageReader};
 
 fn main() {
 
@@ -16,7 +16,7 @@ fn main() {
 
     let mut file = File::create("./output/image.h").unwrap();
 
-    file.write_fmt(format_args!("const unsigned char* image[] = {{")).unwrap();
+    file.write_fmt(format_args!("const unsigned char image[] = {{")).unwrap();
     for byte in image_bytes {
         file.write_fmt(format_args!("{},",byte)).unwrap();
     }
