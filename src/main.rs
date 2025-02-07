@@ -1,4 +1,4 @@
-use std::{fs::{create_dir, read_dir, File, ReadDir}, io::Write, path::Path};
+use std::{fs::{create_dir, read_dir, File}, io::Write, path::Path};
 
 use image::{imageops::FilterType::Triangle, ImageReader};
 
@@ -9,7 +9,8 @@ fn main() {
         create_dir(output_dir).unwrap()
     }
 
-    let mut file = File::create("./output/image.h").unwrap();
+    let mut file = File::create("./output/images.h").unwrap();
+    file.write_fmt(format_args!("#ifndef TESTING_DATA_IMAGES_H_\n#define TESTING_DATA_IMAGES_H_\n")).unwrap();
 
     let image_dir = Path::new("./images");
     if image_dir.is_dir() {
@@ -34,4 +35,6 @@ fn main() {
             file.write_fmt(format_args!("}};\n")).unwrap();
         }
     }
+
+    file.write_fmt(format_args!("#endif\n")).unwrap();
 }
