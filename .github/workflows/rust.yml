@@ -16,7 +16,7 @@ jobs:
 
     steps:
     - name: Cache
-    - uses: actions/cache@v4
+      uses: actions/cache@v4
       with:
         path: |
           ~/.cargo/bin/
@@ -28,7 +28,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-cargo-
     - name: Checkout
-    - uses: actions/checkout@v4
+      uses: actions/checkout@v4
     - name: Build
       run: cargo build --verbose
     # TODO - clippy + tests
